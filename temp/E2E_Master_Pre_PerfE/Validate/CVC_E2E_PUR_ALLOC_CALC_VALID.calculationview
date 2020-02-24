@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Calculation:scenario xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Calculation="http://www.sap.com/ndb/BiModelCalculation.ecore" schemaVersion="2.3" id="CVC_E2E_PUR_ALLOC_CALC_VALID" applyPrivilegeType="NONE" checkAnalyticPrivileges="false" defaultClient="$$client$$" defaultLanguage="$$language$$" hierarchiesSQLEnabled="false" translationRelevant="true" visibility="reportingEnabled" calculationScenarioType="TREE_BASED" dataCategory="CUBE" enforceSqlExecution="false" executionSemantic="UNDEFINED" outputViewType="Aggregation">
+  <origin/>
+  <descriptions defaultDescription="CVC_E2E_PUR_ALLOC_CALC_VALID"/>
+  <metadata activatedAt="2019-04-26 15:48:46.0" changedAt="2019-12-19 10:46:03.817" createdAt="2019-12-19 10:46:03.817"/>
+  <localVariables/>
+  <variableMappings/>
+  <informationModelLayout relativeWidthScenario="27"/>
+  <dataSources>
+    <DataSource id="ZADPURAL" type="CALCULATION_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/system-local.bw.bw2hana/calculationviews/ZADPURAL</resourceUri>
+    </DataSource>
+    <DataSource id="ZRT_OPUR" type="ANALYTIC_VIEW">
+      <viewAttributes allViewAttributes="true"/>
+      <resourceUri>/system-local.bw.bw2hana/analyticviews/ZRT_OPUR</resourceUri>
+    </DataSource>
+  </dataSources>
+  <calculationViews>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_PUR_NEW">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="0FISCPER"/>
+        <viewAttribute id="0CUST_GROUP"/>
+        <viewAttribute id="0LOC_CURRCY"/>
+        <viewAttribute id="0REQTSN"/>
+        <viewAttribute id="0SALESORG"/>
+        <viewAttribute id="ZBANNER"/>
+        <viewAttribute id="NEW_1ROWCOUNT"/>
+        <viewAttribute id="NEW_ZPERC"/>
+        <viewAttribute id="NEW_ZSLSRTL"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#ZADPURAL">
+        <mapping xsi:type="Calculation:AttributeMapping" target="0FISCPER" source="0FISCPER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0CUST_GROUP" source="0CUST_GROUP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0LOC_CURRCY" source="0LOC_CURRCY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0REQTSN" source="0REQTSN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0SALESORG" source="0SALESORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZBANNER" source="ZBANNER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NEW_1ROWCOUNT" source="1ROWCOUNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NEW_ZPERC" source="ZPERC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NEW_ZSLSRTL" source="ZSLSRTL"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:ProjectionView" id="P_PUR_OLD">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="0CUST_GROUP"/>
+        <viewAttribute id="0LOC_CURRCY"/>
+        <viewAttribute id="0SALESORG"/>
+        <viewAttribute id="ZBANNER"/>
+        <viewAttribute id="OLD_ZPERC"/>
+        <viewAttribute id="OLD_ZSLSRTL"/>
+        <viewAttribute id="OLD_row_count"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input node="#ZRT_OPUR">
+        <mapping xsi:type="Calculation:AttributeMapping" target="0CUST_GROUP" source="0CUST_GROUP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0LOC_CURRCY" source="0LOC_CURRCY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0SALESORG" source="0SALESORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZBANNER" source="ZBANNER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OLD_ZPERC" source="ZPERC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OLD_ZSLSRTL" source="ZSLSRTL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OLD_row_count" source="row.count"/>
+      </input>
+    </calculationView>
+    <calculationView xsi:type="Calculation:UnionView" id="Union_1">
+      <descriptions/>
+      <viewAttributes>
+        <viewAttribute id="0FISCPER" transparentFilter="false"/>
+        <viewAttribute id="0CUST_GROUP" transparentFilter="false"/>
+        <viewAttribute id="0LOC_CURRCY" transparentFilter="false"/>
+        <viewAttribute id="0REQTSN" transparentFilter="false"/>
+        <viewAttribute id="0SALESORG" transparentFilter="false"/>
+        <viewAttribute id="ZBANNER" transparentFilter="false"/>
+        <viewAttribute id="NEW_1ROWCOUNT" transparentFilter="false"/>
+        <viewAttribute id="NEW_ZPERC" transparentFilter="false"/>
+        <viewAttribute id="NEW_ZSLSRTL" transparentFilter="false"/>
+        <viewAttribute id="OLD_ZPERC" transparentFilter="false"/>
+        <viewAttribute id="OLD_ZSLSRTL" transparentFilter="false"/>
+        <viewAttribute id="OLD_row_count" transparentFilter="false"/>
+      </viewAttributes>
+      <calculatedViewAttributes/>
+      <input emptyUnionBehavior="NO_ROW" node="#P_PUR_NEW">
+        <mapping xsi:type="Calculation:AttributeMapping" target="0FISCPER" source="0FISCPER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0CUST_GROUP" source="0CUST_GROUP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0LOC_CURRCY" source="0LOC_CURRCY"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0REQTSN" source="0REQTSN"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0SALESORG" source="0SALESORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZBANNER" source="ZBANNER"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NEW_1ROWCOUNT" source="NEW_1ROWCOUNT"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NEW_ZPERC" source="NEW_ZPERC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="NEW_ZSLSRTL" source="NEW_ZSLSRTL"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="OLD_ZPERC" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="OLD_ZSLSRTL" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="OLD_row_count" null="true" value=""/>
+      </input>
+      <input emptyUnionBehavior="NO_ROW" node="#P_PUR_OLD">
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="0FISCPER" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0CUST_GROUP" source="0CUST_GROUP"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0LOC_CURRCY" source="0LOC_CURRCY"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="0REQTSN" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="0SALESORG" source="0SALESORG"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="ZBANNER" source="ZBANNER"/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="NEW_1ROWCOUNT" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="NEW_ZPERC" null="true" value=""/>
+        <mapping xsi:type="Calculation:ConstantAttributeMapping" target="NEW_ZSLSRTL" null="true" value=""/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OLD_ZPERC" source="OLD_ZPERC"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OLD_ZSLSRTL" source="OLD_ZSLSRTL"/>
+        <mapping xsi:type="Calculation:AttributeMapping" target="OLD_row_count" source="OLD_row_count"/>
+      </input>
+    </calculationView>
+  </calculationViews>
+  <logicalModel id="Union_1">
+    <descriptions/>
+    <attributes>
+      <attribute id="0FISCPER" order="1" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Fiscal year / period"/>
+        <keyMapping columnObjectName="Union_1" columnName="0FISCPER"/>
+      </attribute>
+      <attribute id="0CUST_GROUP" order="2" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Customer group"/>
+        <keyMapping columnObjectName="Union_1" columnName="0CUST_GROUP"/>
+      </attribute>
+      <attribute id="0LOC_CURRCY" order="3" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Local currency"/>
+        <keyMapping columnObjectName="Union_1" columnName="0LOC_CURRCY"/>
+      </attribute>
+      <attribute id="0REQTSN" order="4" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Request Transaction Sequence Number"/>
+        <keyMapping columnObjectName="Union_1" columnName="0REQTSN"/>
+      </attribute>
+      <attribute id="0SALESORG" order="5" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Sales Organization"/>
+        <keyMapping columnObjectName="Union_1" columnName="0SALESORG"/>
+      </attribute>
+      <attribute id="ZBANNER" order="6" attributeHierarchyActive="false" displayAttribute="false" transparentFilter="false">
+        <descriptions defaultDescription="Banner"/>
+        <keyMapping columnObjectName="Union_1" columnName="ZBANNER"/>
+      </attribute>
+    </attributes>
+    <calculatedAttributes/>
+    <privateDataFoundation>
+      <tableProxies/>
+      <joins/>
+      <layout>
+        <shapes/>
+      </layout>
+    </privateDataFoundation>
+    <baseMeasures>
+      <measure id="NEW_1ROWCOUNT" order="7" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Number of Records"/>
+        <measureMapping columnObjectName="Union_1" columnName="NEW_1ROWCOUNT"/>
+      </measure>
+      <measure id="NEW_ZPERC" order="8" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Percentage"/>
+        <measureMapping columnObjectName="Union_1" columnName="NEW_ZPERC"/>
+      </measure>
+      <measure id="NEW_ZSLSRTL" order="9" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Sales at Retail"/>
+        <measureMapping columnObjectName="Union_1" columnName="NEW_ZSLSRTL"/>
+      </measure>
+      <measure id="OLD_ZPERC" order="10" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Percentage"/>
+        <measureMapping columnObjectName="Union_1" columnName="OLD_ZPERC"/>
+      </measure>
+      <measure id="OLD_ZSLSRTL" order="11" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="Sales at Retail"/>
+        <measureMapping columnObjectName="Union_1" columnName="OLD_ZSLSRTL"/>
+      </measure>
+      <measure id="OLD_row_count" order="12" aggregationType="sum" measureType="simple">
+        <descriptions defaultDescription="OLD_row_count"/>
+        <measureMapping columnObjectName="Union_1" columnName="OLD_row_count"/>
+      </measure>
+    </baseMeasures>
+    <calculatedMeasures>
+      <measure id="DIFF_ZPERC" hidden="false" order="13" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="24" scale="13">
+        <descriptions defaultDescription="DIFF_ZPERC"/>
+        <formula>&quot;NEW_ZPERC&quot;-&quot;OLD_ZPERC&quot;</formula>
+      </measure>
+      <measure id="DIFF_ZSLSRTL" hidden="false" order="14" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="17" scale="2">
+        <descriptions defaultDescription="DIFF_ZSLSRTL"/>
+        <formula>&quot;NEW_ZSLSRTL&quot;-&quot;OLD_ZSLSRTL&quot;</formula>
+      </measure>
+      <measure id="DIFF_ROW_COUNT" hidden="false" order="15" aggregationType="sum" measureType="simple" datatype="DECIMAL" expressionLanguage="COLUMN_ENGINE" length="17" scale="2">
+        <descriptions defaultDescription="DIFF_ROW_COUNT"/>
+        <formula>&quot;NEW_1ROWCOUNT&quot;-&quot;OLD_row_count&quot;</formula>
+      </measure>
+    </calculatedMeasures>
+    <restrictedMeasures/>
+    <localDimensions/>
+  </logicalModel>
+  <layout>
+    <shapes>
+      <shape expanded="true" modelObjectName="Output" modelObjectNameSpace="MeasureGroup">
+        <upperLeftCorner x="99" y="87"/>
+        <rectangleSize height="0" width="0"/>
+      </shape>
+      <shape expanded="true" modelObjectName="P_PUR_NEW" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="22" y="281"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="P_PUR_OLD" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="176" y="281"/>
+        <rectangleSize height="-1" width="-1"/>
+      </shape>
+      <shape expanded="true" modelObjectName="Union_1" modelObjectNameSpace="CalculationView">
+        <upperLeftCorner x="99" y="165"/>
+        <rectangleSize height="107" width="140"/>
+      </shape>
+    </shapes>
+  </layout>
+</Calculation:scenario>
